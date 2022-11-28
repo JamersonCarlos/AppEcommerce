@@ -9,6 +9,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  bool activatedBrand = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +28,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
-        toolbarHeight: 90,
         centerTitle: true,
         leading: Builder(
           builder: (context) => IconButton(
@@ -43,7 +44,7 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
               onPressed: () {},
-              icon: Icon(
+              icon: const Icon(
                 Icons.search,
                 color: Color(0xFF060DD9),
                 size: 30,
@@ -54,6 +55,87 @@ class _HomePageState extends State<HomePage> {
         elevation: 5,
         width: 250,
         backgroundColor: Color(0xFF060DD9),
+      ),
+      body: Container(
+        decoration: const BoxDecoration(
+            color: Color.fromARGB(19, 6, 13, 217),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30),
+            )),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Choose Brand",
+                textAlign: TextAlign.left,
+                style: GoogleFonts.poppins(
+                  textStyle: const TextStyle(
+                    fontWeight: FontWeight.w700,
+                    color: Color.fromARGB(179, 0, 0, 0),
+                    fontSize: 14,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 14,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  elementBrand(
+                      directoryImage: 'assets/img/beatsIcon.jpeg',
+                      height: 31,
+                      width: 31),
+                  elementBrand(
+                      directoryImage: 'assets/img/jblIcon.jpeg',
+                      height: 39,
+                      width: 27),
+                  elementBrand(
+                      directoryImage: 'assets/img/akgIcon.jpeg',
+                      height: 60,
+                      width: 23),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget elementBrand(
+      {required String directoryImage,
+      required double height,
+      required double width}) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          activatedBrand = !activatedBrand;
+        });
+      },
+      child: Container(
+        width: 104,
+        height: 64,
+        padding: const EdgeInsets.all(18),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(14),
+            color: Colors.white,
+            boxShadow: activatedBrand
+                ? [
+                    const BoxShadow(
+                      color: Color.fromARGB(90, 0, 0, 0),
+                      offset: Offset(1.0, 5.0),
+                      blurRadius: 4.0,
+                      spreadRadius: 1.0,
+                    )
+                  ]
+                : null),
+        child: Image(
+          image: AssetImage(directoryImage),
+        ),
       ),
     );
   }
