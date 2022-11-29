@@ -14,6 +14,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       drawerEnableOpenDragGesture: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -60,8 +61,8 @@ class _HomePageState extends State<HomePage> {
         decoration: const BoxDecoration(
             color: Color.fromARGB(19, 6, 13, 217),
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(30),
-              topRight: Radius.circular(30),
+              topLeft: Radius.circular(40),
+              topRight: Radius.circular(40),
             )),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
@@ -103,6 +104,33 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
+      bottomNavigationBar: ClipRRect(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+        child: BottomNavigationBar(
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          selectedItemColor: Colors.black,
+          iconSize: 26,
+          type: BottomNavigationBarType.fixed,
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.house), label: "house"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.favorite), label: "favorite"),
+            BottomNavigationBarItem(icon: Icon(Icons.list_alt), label: "list"),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: "perfil"),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Color(0xFF060DD9),
+        child: Icon(Icons.shopping_bag_outlined),
+        elevation: 5,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 
